@@ -1,10 +1,10 @@
-package com.enrrerateapp;
+package com.enrreateapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EnrrerateappApplicationTests {
+class EnrreateappApplicationTests {
 
 	@Test
 	void contextLoads() {
