@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com_enrreateapp_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.enrreateapp.model.Usuarioasisteestablecimiento</class>
+    <class>com.enrreateapp.model.Comentarioestablecimiento</class>
+    <class>com.enrreateapp.model.Comentarioevento</class>
+    <class>com.enrreateapp.model.Usuariovaloraestablecimiento</class>
+    <class>com.enrreateapp.model.Usuariovaloraevento</class>
+    <class>com.enrreateapp.model.Establecimientos</class>
+    <class>com.enrreateapp.model.Usuarios</class>
+    <class>com.enrreateapp.model.Eventos</class>
+    <class>com.enrreateapp.model.Administradores</class>
+    <class>com.enrreateapp.model.Establecimiento</class>
+    <class>com.enrreateapp.model.UsuarioAsisteEvento</class>
+    <class>com.enrreateapp.model.Evento</class>
+    <class>com.enrreateapp.model.Administrador</class>
+    <class>com.enrreateapp.model.ComentarioEvento</class>
+    <class>com.enrreateapp.model.UsuarioValoraEvento</class>
+    <class>com.enrreateapp.model.ComentarioEstablecimiento</class>
+    <class>com.enrreateapp.model.Usuario</class>
+    <class>com.enrreateapp.model.UsuarioValoraEstablecimiento</class>
+    <class>com.enrreateapp.model.UsuarioAsisteEstablecimiento</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/enrreateapp?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+    </properties>
+  </persistence-unit>
+</persistence>
