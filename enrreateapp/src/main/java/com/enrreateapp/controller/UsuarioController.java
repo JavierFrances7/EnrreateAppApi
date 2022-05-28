@@ -22,10 +22,7 @@ import com.enrreateapp.exceptions.UsuarioNotFoundException;
 import com.enrreateapp.model.Usuario;
 import com.enrreateapp.repository.UsuarioRepository;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
-@RequiredArgsConstructor
 public class UsuarioController { 
 	
 	private final UsuarioRepository usuarioRepositorio; 
@@ -47,7 +44,7 @@ public class UsuarioController {
 	 * @return
 	 */
 	
-	@GetMapping("/usuarios")
+	@GetMapping("/api/usuarios")
 	public ResponseEntity<?> obtenerTodos() {
 		List<Usuario> result=usuarioRepositorio.findAll();
 		
@@ -91,7 +88,7 @@ public class UsuarioController {
 	@PutMapping("/usuario/{uid_usuario}")
 	public ResponseEntity<?> editarPedido(@RequestBody Usuario editar, @PathVariable String uid_usuario) throws UsuarioNotFoundException{
 		if(usuarioRepositorio.existsById(uid_usuario)) {
-			editar.setUid(uid_usuario);
+			editar.setUidUsuario(uid_usuario);
 			return ResponseEntity.ok(usuarioRepositorio.save(editar));
 
 		}else {
