@@ -1,21 +1,23 @@
 package com.enrreateapp.DTO;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Date;
 
 public class CreateUsuarioDTO {
 
-	private String id_usuario;
+	private String uidUsuario;
 	private String nombre;
 	private String apellidos;
+	private String nombreUsuario;
 	private String correo;
+	private Date fechaNacimiento;
 	
-	public String getId_usuario() {
-		return id_usuario;
+	public String getUidUsuario() {
+		return uidUsuario;
 	}
-	public void setId_usuario(String id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setUidUsuario(String uidUsuario) {
+		this.uidUsuario = uidUsuario;
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -34,5 +36,21 @@ public class CreateUsuarioDTO {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+	
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+	
+	
+	
 
 }

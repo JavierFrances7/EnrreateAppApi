@@ -65,41 +65,41 @@ public class UsuarioController {
 	 * @return
 	 */
 	
-	@GetMapping("/usuario/{uid_usuario}")
+	@GetMapping("/api/usuario/{uid_usuario}")
 	public ResponseEntity<?> obtenerUno(@PathVariable String uid_usuario) throws UsuarioNotFoundException{
 		Usuario result=usuarioRepositorio.findById(uid_usuario).orElse(null);
 		
 		if(result==null)
-			throw new UsuarioNotFoundException("ERROR: Pedido no encontrado con el id: " + uid_usuario);
+			throw new UsuarioNotFoundException("ERROR: Usuario no encontrado con el id: " + uid_usuario);
 			else
 			return ResponseEntity.ok(usuarioDTOConverter.convertirADto(result));
 	}
 	
 	//Método para crear usuario
 	
-	@PostMapping("/usuario")
-	public ResponseEntity<?> nuevoPedido(@RequestBody CreateUsuarioDTO nuevo) {
+	@PostMapping("/api/usuario")
+	public ResponseEntity<?> nuevoUsuario(@RequestBody CreateUsuarioDTO nuevo) {
 		Usuario usuario= usuarioDTOConverter.convertirAUsuario(nuevo);
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepositorio.save(usuario));
 	}
 
 	//Método para actualizar usuario
 	
-	@PutMapping("/usuario/{uid_usuario}")
-	public ResponseEntity<?> editarPedido(@RequestBody Usuario editar, @PathVariable String uid_usuario) throws UsuarioNotFoundException{
+	@PutMapping("/api/usuario/{uid_usuario}")
+	public ResponseEntity<?> editarUsuario(@RequestBody Usuario editar, @PathVariable String uid_usuario) throws UsuarioNotFoundException{
 		if(usuarioRepositorio.existsById(uid_usuario)) {
 			editar.setUidUsuario(uid_usuario);
 			return ResponseEntity.ok(usuarioRepositorio.save(editar));
 
 		}else {
-			throw new UsuarioNotFoundException("El pedido con ID: " + uid_usuario + " no existe.");
+			throw new UsuarioNotFoundException("El usuario con ID: " + uid_usuario + " no existe.");
 		}
 	}
 	
 	//Método para borrar usuario
 	
-	@DeleteMapping("/usuario/{uid_usuario}")
-	public ResponseEntity<?> editarPedido(@PathVariable String uid_usuario){
+	@DeleteMapping("/api/usuario/{uid_usuario}")
+	public ResponseEntity<?> editarUsuario(@PathVariable String uid_usuario){
 		Usuario result=usuarioRepositorio.findById(uid_usuario).orElse(null);
 		if(usuarioRepositorio.existsById(uid_usuario)) {
 			usuarioRepositorio.delete(result);
@@ -108,7 +108,7 @@ public class UsuarioController {
 			return ResponseEntity.notFound().build();
 	}
 	
-	public ResponseEntity<ApiError>handlePedidoNoEncontrado(UsuarioNotFoundException ex){
+	public ResponseEntity<ApiError>handleUsuarioNoEncontrado(UsuarioNotFoundException ex){
 		ApiError apiError = new ApiError();
 		apiError.setEstado(HttpStatus.NOT_FOUND);
 		apiError.setFecha(LocalDateTime.now());
