@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.enrreateapp.DTO.CreateUsuarioDTO;
 import com.enrreateapp.DTO.UsuarioDTO;
 import com.enrreateapp.DTO.UsuarioDTOConverter;
+import com.enrreateapp.DTO.UsuarioUidsDTO;
 import com.enrreateapp.exceptions.ApiError;
 import com.enrreateapp.exceptions.UsuarioNotFoundException;
 import com.enrreateapp.model.Usuario;
@@ -38,11 +39,8 @@ public class UsuarioController {
 	//se inyecta solo al crear el bean controlador
 	
 	
-	/**
-	 * Obtenemos todos los usuarios
-	 * 
-	 * @return
-	 */
+	//Método que obtiene todos los usuarios
+	
 	
 	@GetMapping("/api/usuarios")
 	public ResponseEntity<?> obtenerTodos() {
@@ -59,12 +57,9 @@ public class UsuarioController {
 			
 	}
 	
-	/**
-	 * Obtenemos un usuario por el id
-	 * 
-	 * @return
-	 */
-	
+
+	 //Metodo que obtiene un usuario por el id
+
 	@GetMapping("/api/usuario/{uid_usuario}")
 	public ResponseEntity<?> obtenerUno(@PathVariable String uid_usuario) throws UsuarioNotFoundException{
 		Usuario result=usuarioRepositorio.findById(uid_usuario).orElse(null);
@@ -73,6 +68,23 @@ public class UsuarioController {
 			throw new UsuarioNotFoundException("ERROR: Usuario no encontrado con el id: " + uid_usuario);
 			else
 			return ResponseEntity.ok(usuarioDTOConverter.convertirADto(result));
+	}
+	
+	//Método que obtiene todos los uids de los usuarios normales
+	
+	@GetMapping("/api/usuarios/uids")
+	public ResponseEntity<?> obtenerUids() {
+			List<Usuario> result=usuarioRepositorio.findAll();
+		
+		if(result.isEmpty()) 
+			return ResponseEntity.notFound().build();
+		else {
+			List<UsuarioUidsDTO> dtoList=result.stream().map
+					(usuarioDTOConverter::convertirUidsADto).collect
+					(Collectors.toList());
+			return ResponseEntity.ok(dtoList);
+		}
+			
 	}
 	
 	//Método para crear usuario

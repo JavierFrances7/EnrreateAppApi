@@ -21,4 +21,9 @@ public class EstablecimientoDTOConverter {
 	public Establecimiento convertirAEstablecimiento(CreateEstablecimientoDTO createEstablecimientoDto) {
 		return modelMapper.map(createEstablecimientoDto,Establecimiento.class);
 	}
+	
+	public EstablecimientoUidsDTO convertirUidsADto(Establecimiento establecimiento) {
+		return modelMapper.map(establecimiento, EstablecimientoUidsDTO.class);
+	}
+	
 }

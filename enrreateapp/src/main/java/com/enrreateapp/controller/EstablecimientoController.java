@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.enrreateapp.DTO.CreateEstablecimientoDTO;
 import com.enrreateapp.DTO.EstablecimientoDTO;
 import com.enrreateapp.DTO.EstablecimientoDTOConverter;
+import com.enrreateapp.DTO.EstablecimientoUidsDTO;
 import com.enrreateapp.exceptions.ApiError;
 import com.enrreateapp.exceptions.EstablecimientoNotFoundException;
 import com.enrreateapp.model.Establecimiento;
@@ -74,6 +75,29 @@ public class EstablecimientoController {
 			else
 			return ResponseEntity.ok(establecimientoDTOConverter.convertirADto(result));
 	}
+	
+	
+	/**
+	 * Obtenemos todos las uids de los usuarios del tipo establecimiento
+	 * 
+	 * @return
+	 */
+	
+	@GetMapping("/api/establecimientos/uids")
+	public ResponseEntity<?> obtenerUids() {
+		List<Establecimiento> result=establecimientoRepositorio.findAll();
+		
+		if(result.isEmpty()) 
+			return ResponseEntity.notFound().build();
+		else {
+			List<EstablecimientoUidsDTO> dtoList=result.stream().map
+					(establecimientoDTOConverter::convertirUidsADto).collect
+					(Collectors.toList());
+			return ResponseEntity.ok(dtoList);
+		}
+			
+	}
+	
 	
 	//Método para crear establecimiento
 	

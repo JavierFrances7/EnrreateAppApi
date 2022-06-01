@@ -22,4 +22,8 @@ public class UsuarioDTOConverter {
 	public Usuario convertirAUsuario(CreateUsuarioDTO createUsuarioDto) {
 		return modelMapper.map(createUsuarioDto,Usuario.class);
 	}
+	
+	public UsuarioUidsDTO convertirUidsADto(Usuario usuario) {
+		return modelMapper.map(usuario, UsuarioUidsDTO.class);
+	}
 }
