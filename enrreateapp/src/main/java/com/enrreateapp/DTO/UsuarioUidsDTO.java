@@ -1,11 +1,19 @@
 package com.enrreateapp.DTO;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter @Setter
 public class UsuarioUidsDTO {
 
+
 	private String uidUsuario;
+
+	public String getUidUsuario() {
+		return uidUsuario;
+	}
+
+	public void setUidUsuario(String uidUsuario) {
+		this.uidUsuario = uidUsuario;
+	}
+	
+	
 
 }
