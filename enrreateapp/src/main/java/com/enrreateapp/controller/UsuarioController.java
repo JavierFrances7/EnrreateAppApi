@@ -24,103 +24,97 @@ import com.enrreateapp.model.Usuario;
 import com.enrreateapp.repository.UsuarioRepository;
 
 @RestController
-public class UsuarioController { 
-	
-	private final UsuarioRepository usuarioRepositorio; 
+public class UsuarioController {
+
+	// Se declara como final pq no se va a modificar este repositorio se inyecta
+	// solo al crear el bean controlador
+	private final UsuarioRepository usuarioRepositorio;
 	private final UsuarioDTOConverter usuarioDTOConverter;
-	
+
 	public UsuarioController(UsuarioRepository usuarioRepositorio, UsuarioDTOConverter usuarioDTOConverter) {
 		this.usuarioRepositorio = usuarioRepositorio;
 		this.usuarioDTOConverter = usuarioDTOConverter;
 	}
-	
-	// se declara como final pq no se va a modificar este repositorio
 
-	//se inyecta solo al crear el bean controlador
-	
-	
-	//Método que obtiene todos los usuarios
-	
-	
+	// Método que obtiene todos los usuarios
+
 	@GetMapping("/api/usuarios")
 	public ResponseEntity<?> obtenerTodos() {
-		List<Usuario> result=usuarioRepositorio.findAll();
-		
-		if(result.isEmpty()) 
+		List<Usuario> result = usuarioRepositorio.findAll();
+
+		if (result.isEmpty())
 			return ResponseEntity.notFound().build();
 		else {
-			List<UsuarioDTO> dtoList=result.stream().map
-					(usuarioDTOConverter::convertirADto).collect
-					(Collectors.toList());
+			List<UsuarioDTO> dtoList = result.stream().map(usuarioDTOConverter::convertirADto)
+					.collect(Collectors.toList());
 			return ResponseEntity.ok(dtoList);
 		}
-			
-	}
-	
 
-	 //Metodo que obtiene un usuario por el id
+	}
+
+	// Metodo que obtiene un usuario por el id
 
 	@GetMapping("/api/usuario/{uid_usuario}")
-	public ResponseEntity<?> obtenerUno(@PathVariable String uid_usuario) throws UsuarioNotFoundException{
-		Usuario result=usuarioRepositorio.findById(uid_usuario).orElse(null);
-		
-		if(result==null)
+	public ResponseEntity<?> obtenerUno(@PathVariable String uid_usuario) throws UsuarioNotFoundException {
+		Usuario result = usuarioRepositorio.findById(uid_usuario).orElse(null);
+
+		if (result == null)
 			throw new UsuarioNotFoundException("ERROR: Usuario no encontrado con el id: " + uid_usuario);
-			else
+		else
 			return ResponseEntity.ok(usuarioDTOConverter.convertirADto(result));
 	}
-	
-	//Método que obtiene todos los uids de los usuarios normales
-	
+
+	// Método que obtiene todos los uids de los usuarios normales
+
 	@GetMapping("/api/usuarios/uids")
 	public ResponseEntity<?> obtenerUids() {
-			List<Usuario> result=usuarioRepositorio.findAll();
-		
-		if(result.isEmpty()) 
+		List<Usuario> result = usuarioRepositorio.findAll();
+
+		if (result.isEmpty())
 			return ResponseEntity.notFound().build();
 		else {
-			List<UsuarioUidsDTO> dtoList=result.stream().map
-					(usuarioDTOConverter::convertirUidsADto).collect
-					(Collectors.toList());
+			List<UsuarioUidsDTO> dtoList = result.stream().map(usuarioDTOConverter::convertirUidsADto)
+					.collect(Collectors.toList());
 			return ResponseEntity.ok(dtoList);
 		}
-			
+
 	}
-	
-	//Método para crear usuario
-	
+
+	// Método para crear usuario
+
 	@PostMapping("/api/usuario")
 	public ResponseEntity<?> nuevoUsuario(@RequestBody CreateUsuarioDTO nuevo) {
-		Usuario usuario= usuarioDTOConverter.convertirAUsuario(nuevo);
+		Usuario usuario = usuarioDTOConverter.convertirAUsuario(nuevo);
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepositorio.save(usuario));
 	}
 
-	//Método para actualizar usuario
-	
+	// Método para actualizar usuario
+
 	@PutMapping("/api/usuario/{uid_usuario}")
-	public ResponseEntity<?> editarUsuario(@RequestBody Usuario editar, @PathVariable String uid_usuario) throws UsuarioNotFoundException{
-		if(usuarioRepositorio.existsById(uid_usuario)) {
+	public ResponseEntity<?> editarUsuario(@RequestBody Usuario editar, @PathVariable String uid_usuario)
+			throws UsuarioNotFoundException {
+		if (usuarioRepositorio.existsById(uid_usuario)) {
 			editar.setUidUsuario(uid_usuario);
 			return ResponseEntity.ok(usuarioRepositorio.save(editar));
 
-		}else {
+		} else {
 			throw new UsuarioNotFoundException("El usuario con ID: " + uid_usuario + " no existe.");
 		}
 	}
-	
-	//Método para borrar usuario
-	
+
+	// Método para borrar usuario
+
 	@DeleteMapping("/api/usuario/{uid_usuario}")
-	public ResponseEntity<?> editarUsuario(@PathVariable String uid_usuario){
-		Usuario result=usuarioRepositorio.findById(uid_usuario).orElse(null);
-		if(usuarioRepositorio.existsById(uid_usuario)) {
+	public ResponseEntity<?> borrarUsuario(@PathVariable String uid_usuario) {
+		Usuario result = usuarioRepositorio.findById(uid_usuario).orElse(null);
+		if (usuarioRepositorio.existsById(uid_usuario)) {
 			usuarioRepositorio.delete(result);
 			return ResponseEntity.noContent().build();
-		}else
+		} else
 			return ResponseEntity.notFound().build();
 	}
-	
-	public ResponseEntity<ApiError>handleUsuarioNoEncontrado(UsuarioNotFoundException ex){
+
+	public ResponseEntity<ApiError> handleUsuarioNoEncontrado(UsuarioNotFoundException ex) {
 		ApiError apiError = new ApiError();
 		apiError.setEstado(HttpStatus.NOT_FOUND);
 		apiError.setFecha(LocalDateTime.now());

@@ -21,4 +21,8 @@ public class AdministradorDTOConverter {
 		return modelMapper.map(createAdministradorDto, Administrador.class);
 	}
 
+	public AdministradorUidsDTO convertirUidsADto(Administrador administrador) {
+		return modelMapper.map(administrador, AdministradorUidsDTO.class);
+	}
+	
 }

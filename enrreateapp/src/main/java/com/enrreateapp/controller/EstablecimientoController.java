@@ -24,115 +24,113 @@ import com.enrreateapp.model.Establecimiento;
 import com.enrreateapp.repository.EstablecimientoRepository;
 
 @RestController
-public class EstablecimientoController { 
-	
-	private final EstablecimientoRepository establecimientoRepositorio; 
+public class EstablecimientoController {
+	// Se declara como final pq no se va a modificar este repositorio se inyecta
+	// solo al crear el bean controlador
+
+	private final EstablecimientoRepository establecimientoRepositorio;
 	private final EstablecimientoDTOConverter establecimientoDTOConverter;
-	
-	public EstablecimientoController(EstablecimientoRepository establecimientoRepositorio, EstablecimientoDTOConverter establecimientoDTOConverter) {
+
+	public EstablecimientoController(EstablecimientoRepository establecimientoRepositorio,
+			EstablecimientoDTOConverter establecimientoDTOConverter) {
 		this.establecimientoRepositorio = establecimientoRepositorio;
 		this.establecimientoDTOConverter = establecimientoDTOConverter;
 	}
-	
-	// se declara como final pq no se va a modificar este repositorio
 
-	//se inyecta solo al crear el bean controlador
-	
-	
 	/**
 	 * Obtenemos todos los establecimientos
 	 * 
 	 * @return
 	 */
-	
+
 	@GetMapping("/api/establecimientos")
 	public ResponseEntity<?> obtenerTodos() {
-		List<Establecimiento> result=establecimientoRepositorio.findAll();
-		
-		if(result.isEmpty()) 
+		List<Establecimiento> result = establecimientoRepositorio.findAll();
+
+		if (result.isEmpty())
 			return ResponseEntity.notFound().build();
 		else {
-			List<EstablecimientoDTO> dtoList=result.stream().map
-					(establecimientoDTOConverter::convertirADto).collect
-					(Collectors.toList());
+			List<EstablecimientoDTO> dtoList = result.stream().map(establecimientoDTOConverter::convertirADto)
+					.collect(Collectors.toList());
 			return ResponseEntity.ok(dtoList);
 		}
-			
+
 	}
-	
+
 	/**
 	 * Obtenemos un establecimiento por el id
 	 * 
 	 * @return
 	 */
-	
+
 	@GetMapping("/api/establecimiento/{uid_establecimiento}")
-	public ResponseEntity<?> obtenerUno(@PathVariable String uid_establecimiento) throws EstablecimientoNotFoundException{
-		Establecimiento result=establecimientoRepositorio.findById(uid_establecimiento).orElse(null);
-		
-		if(result==null)
-			throw new EstablecimientoNotFoundException("ERROR: establecimientos no encontrado con el id: " + uid_establecimiento);
-			else
+	public ResponseEntity<?> obtenerUno(@PathVariable String uid_establecimiento)
+			throws EstablecimientoNotFoundException {
+		Establecimiento result = establecimientoRepositorio.findById(uid_establecimiento).orElse(null);
+
+		if (result == null)
+			throw new EstablecimientoNotFoundException(
+					"ERROR: establecimientos no encontrado con el id: " + uid_establecimiento);
+		else
 			return ResponseEntity.ok(establecimientoDTOConverter.convertirADto(result));
 	}
-	
-	
+
 	/**
 	 * Obtenemos todos las uids de los usuarios del tipo establecimiento
 	 * 
 	 * @return
 	 */
-	
+
 	@GetMapping("/api/establecimientos/uids")
 	public ResponseEntity<?> obtenerUids() {
-		List<Establecimiento> result=establecimientoRepositorio.findAll();
-		
-		if(result.isEmpty()) 
+		List<Establecimiento> result = establecimientoRepositorio.findAll();
+
+		if (result.isEmpty())
 			return ResponseEntity.notFound().build();
 		else {
-			List<EstablecimientoUidsDTO> dtoList=result.stream().map
-					(establecimientoDTOConverter::convertirUidsADto).collect
-					(Collectors.toList());
+			List<EstablecimientoUidsDTO> dtoList = result.stream().map(establecimientoDTOConverter::convertirUidsADto)
+					.collect(Collectors.toList());
 			return ResponseEntity.ok(dtoList);
 		}
-			
+
 	}
-	
-	
-	//Método para crear establecimiento
-	
+
+	// Método para crear establecimiento
+
 	@PostMapping("/api/establecimiento")
 	public ResponseEntity<?> nuevoEstablecimiento(@RequestBody CreateEstablecimientoDTO nuevo) {
-		Establecimiento establecimiento= establecimientoDTOConverter.convertirAEstablecimiento(nuevo);
+		Establecimiento establecimiento = establecimientoDTOConverter.convertirAEstablecimiento(nuevo);
 		return ResponseEntity.status(HttpStatus.CREATED).body(establecimientoRepositorio.save(establecimiento));
 	}
 
-	//Método para actualizar establecimiento
-	
+	// Método para actualizar establecimiento
+
 	@PutMapping("/api/establecimiento/{uid_establecimiento}")
-	public ResponseEntity<?> editarEstablecimiento(@RequestBody Establecimiento editar, @PathVariable String uid_establecimiento) throws EstablecimientoNotFoundException{
-		if(establecimientoRepositorio.existsById(uid_establecimiento)) {
+	public ResponseEntity<?> editarEstablecimiento(@RequestBody Establecimiento editar,
+			@PathVariable String uid_establecimiento) throws EstablecimientoNotFoundException {
+		if (establecimientoRepositorio.existsById(uid_establecimiento)) {
 			editar.setUidEstablecimiento(uid_establecimiento);
 			return ResponseEntity.ok(establecimientoRepositorio.save(editar));
 
-		}else {
-			throw new EstablecimientoNotFoundException("El establecimiento con ID: " + uid_establecimiento + " no existe.");
+		} else {
+			throw new EstablecimientoNotFoundException(
+					"El establecimiento con ID: " + uid_establecimiento + " no existe.");
 		}
 	}
-	
-	//Método para borrar usuario
-	
+
+	// Método para borrar un establecimiento
+
 	@DeleteMapping("/api/establecimiento/{uid_establecimiento}")
-	public ResponseEntity<?> editarPedido(@PathVariable String uid_establecimiento){
-		Establecimiento result=establecimientoRepositorio.findById(uid_establecimiento).orElse(null);
-		if(establecimientoRepositorio.existsById(uid_establecimiento)) {
+	public ResponseEntity<?> borrarEstablecimiento(@PathVariable String uid_establecimiento) {
+		Establecimiento result = establecimientoRepositorio.findById(uid_establecimiento).orElse(null);
+		if (establecimientoRepositorio.existsById(uid_establecimiento)) {
 			establecimientoRepositorio.delete(result);
 			return ResponseEntity.noContent().build();
-		}else
+		} else
 			return ResponseEntity.notFound().build();
 	}
-	
-	public ResponseEntity<ApiError>handleEstablecimientoNoEncontrado(EstablecimientoNotFoundException ex){
+
+	public ResponseEntity<ApiError> handleEstablecimientoNoEncontrado(EstablecimientoNotFoundException ex) {
 		ApiError apiError = new ApiError();
 		apiError.setEstado(HttpStatus.NOT_FOUND);
 		apiError.setFecha(LocalDateTime.now());
