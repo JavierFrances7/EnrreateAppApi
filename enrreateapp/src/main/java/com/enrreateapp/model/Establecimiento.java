@@ -39,7 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Establecimiento.findByCiudad", query = "SELECT e FROM Establecimiento e WHERE e.ciudad = :ciudad"),
     @NamedQuery(name = "Establecimiento.findByDireccion", query = "SELECT e FROM Establecimiento e WHERE e.direccion = :direccion"),
     @NamedQuery(name = "Establecimiento.findByAforoMaximo", query = "SELECT e FROM Establecimiento e WHERE e.aforoMaximo = :aforoMaximo"),
-    @NamedQuery(name = "Establecimiento.findByValoracionMedia", query = "SELECT e FROM Establecimiento e WHERE e.valoracionMedia = :valoracionMedia")})
+    @NamedQuery(name = "Establecimiento.findByValoracionMedia", query = "SELECT e FROM Establecimiento e WHERE e.valoracionMedia = :valoracionMedia"),
+    @NamedQuery(name = "Establecimiento.findByAforoActual", query = "SELECT e FROM Establecimiento e WHERE e.aforoActual = :aforoActual")})
 public class Establecimiento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -74,6 +75,8 @@ public class Establecimiento implements Serializable {
     private Integer aforoMaximo;
     @Column(name = "valoracion_media")
     private Float valoracionMedia;
+    @Column(name = "aforo_actual")
+    private Integer aforoActual;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "uidEstablecimiento")
     private List<Evento> eventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "establecimiento")
@@ -192,6 +195,14 @@ public class Establecimiento implements Serializable {
 
     public void setValoracionMedia(Float valoracionMedia) {
         this.valoracionMedia = valoracionMedia;
+    }
+
+    public Integer getAforoActual() {
+        return aforoActual;
+    }
+
+    public void setAforoActual(Integer aforoActual) {
+        this.aforoActual = aforoActual;
     }
 
     @XmlTransient

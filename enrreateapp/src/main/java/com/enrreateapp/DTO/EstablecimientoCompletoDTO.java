@@ -1,6 +1,6 @@
 package com.enrreateapp.DTO;
 
-public class EstablecimientoDTO {
+public class EstablecimientoCompletoDTO {
 
 	private String uidEstablecimiento;
 	private String nombreEstablecimiento;
@@ -12,13 +12,14 @@ public class EstablecimientoDTO {
 	private String direccion;
 	private int aforoMaximo;
 	private float valoracionMedia;
+	private int aforoActual;
 
-	public EstablecimientoDTO() {
+	public EstablecimientoCompletoDTO() {
 	}
 
-	public EstablecimientoDTO(String uidEstablecimiento, String nombreEstablecimiento, String nombreGestor,
+	public EstablecimientoCompletoDTO(String uidEstablecimiento, String nombreEstablecimiento, String nombreGestor,
 			String correo, float latitud, float longitud, String ciudad, String direccion, int aforoMaximo,
-			float valoracionMedia) {
+			float valoracionMedia, int aforoActual) {
 		this.uidEstablecimiento = uidEstablecimiento;
 		this.nombreEstablecimiento = nombreEstablecimiento;
 		this.nombreGestor = nombreGestor;
@@ -29,6 +30,7 @@ public class EstablecimientoDTO {
 		this.direccion = direccion;
 		this.aforoMaximo = aforoMaximo;
 		this.valoracionMedia = valoracionMedia;
+		this.aforoActual = aforoActual;
 	}
 
 	public String getUidEstablecimiento() {
@@ -109,6 +111,14 @@ public class EstablecimientoDTO {
 
 	public void setValoracionMedia(float valoracionMedia) {
 		this.valoracionMedia = valoracionMedia;
+	}
+
+	public int getAforoActual() {
+		return aforoActual;
+	}
+
+	public void setAforoActual(int aforoActual) {
+		this.aforoActual = aforoActual;
 	}
 
 }

@@ -26,4 +26,8 @@ public class EstablecimientoDTOConverter {
 		return modelMapper.map(establecimiento, EstablecimientoUidsDTO.class);
 	}
 	
+	public EstablecimientoCompletoDTO convertirCompletoADto(Establecimiento establecimiento) {
+		return modelMapper.map(establecimiento, EstablecimientoCompletoDTO.class);
+	}
+	
 }

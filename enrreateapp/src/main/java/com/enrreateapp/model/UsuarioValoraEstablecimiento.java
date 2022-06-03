@@ -36,7 +36,7 @@ public class UsuarioValoraEstablecimiento implements Serializable {
     protected UsuarioValoraEstablecimientoPK usuarioValoraEstablecimientoPK;
     @Basic(optional = false)
     @Column(name = "nota")
-    private String nota;
+    private int nota;
     @JoinColumn(name = "uid_establecimiento", referencedColumnName = "uid_establecimiento", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Establecimiento establecimiento;
@@ -51,7 +51,7 @@ public class UsuarioValoraEstablecimiento implements Serializable {
         this.usuarioValoraEstablecimientoPK = usuarioValoraEstablecimientoPK;
     }
 
-    public UsuarioValoraEstablecimiento(UsuarioValoraEstablecimientoPK usuarioValoraEstablecimientoPK, String nota) {
+    public UsuarioValoraEstablecimiento(UsuarioValoraEstablecimientoPK usuarioValoraEstablecimientoPK, int nota) {
         this.usuarioValoraEstablecimientoPK = usuarioValoraEstablecimientoPK;
         this.nota = nota;
     }
@@ -68,11 +68,11 @@ public class UsuarioValoraEstablecimiento implements Serializable {
         this.usuarioValoraEstablecimientoPK = usuarioValoraEstablecimientoPK;
     }
 
-    public String getNota() {
+    public int getNota() {
         return nota;
     }
 
-    public void setNota(String nota) {
+    public void setNota(int nota) {
         this.nota = nota;
     }
 

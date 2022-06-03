@@ -16,8 +16,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -64,11 +62,8 @@ public class Evento implements Serializable {
     private Integer edadMinima;
     @Column(name = "tipo_musica")
     private String tipoMusica;
-    @JoinTable(name = "usuario_valora_evento", joinColumns = {
-        @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
-        @JoinColumn(name = "uid_usuario", referencedColumnName = "uid_usuario")})
-    @ManyToMany
-    private List<Usuario> usuarioList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
+    private List<UsuarioValoraEvento> usuarioValoraEventoList;
     @JoinColumn(name = "uid_establecimiento", referencedColumnName = "uid_establecimiento")
     @ManyToOne(optional = false)
     private Establecimiento uidEstablecimiento;
@@ -136,12 +131,12 @@ public class Evento implements Serializable {
     }
 
     @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public List<UsuarioValoraEvento> getUsuarioValoraEventoList() {
+        return usuarioValoraEventoList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setUsuarioValoraEventoList(List<UsuarioValoraEvento> usuarioValoraEventoList) {
+        this.usuarioValoraEventoList = usuarioValoraEventoList;
     }
 
     public Establecimiento getUidEstablecimiento() {

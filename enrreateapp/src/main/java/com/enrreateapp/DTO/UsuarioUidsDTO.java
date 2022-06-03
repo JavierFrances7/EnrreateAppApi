@@ -3,7 +3,6 @@ package com.enrreateapp.DTO;
 
 public class UsuarioUidsDTO {
 
-
 	private String uidUsuario;
 
 	public String getUidUsuario() {

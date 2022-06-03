@@ -13,7 +13,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -64,8 +63,8 @@ public class Usuario implements Serializable {
     private Date fechaNacimiento;
     @Column(name = "display_name")
     private String displayName;
-    @ManyToMany(mappedBy = "usuarioList")
-    private List<Evento> eventoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<UsuarioValoraEvento> usuarioValoraEventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "uidUsuario")
     private List<ComentarioEvento> comentarioEventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
@@ -148,12 +147,12 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<Evento> getEventoList() {
-        return eventoList;
+    public List<UsuarioValoraEvento> getUsuarioValoraEventoList() {
+        return usuarioValoraEventoList;
     }
 
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
+    public void setUsuarioValoraEventoList(List<UsuarioValoraEvento> usuarioValoraEventoList) {
+        this.usuarioValoraEventoList = usuarioValoraEventoList;
     }
 
     @XmlTransient
