@@ -12,13 +12,17 @@ public class EstablecimientoDTO {
 	private String direccion;
 	private int aforoMaximo;
 	private float valoracionMedia;
+	private int aforoActual;
+	private boolean verificadoAdmin;
+
 
 	public EstablecimientoDTO() {
 	}
 
 	public EstablecimientoDTO(String uidEstablecimiento, String nombreEstablecimiento, String nombreGestor,
 			String correo, float latitud, float longitud, String ciudad, String direccion, int aforoMaximo,
-			float valoracionMedia) {
+			float valoracionMedia, int aforoActual, boolean verificadoAdmin) {
+		super();
 		this.uidEstablecimiento = uidEstablecimiento;
 		this.nombreEstablecimiento = nombreEstablecimiento;
 		this.nombreGestor = nombreGestor;
@@ -29,6 +33,8 @@ public class EstablecimientoDTO {
 		this.direccion = direccion;
 		this.aforoMaximo = aforoMaximo;
 		this.valoracionMedia = valoracionMedia;
+		this.aforoActual = aforoActual;
+		this.verificadoAdmin = verificadoAdmin;
 	}
 
 	public String getUidEstablecimiento() {
@@ -111,4 +117,21 @@ public class EstablecimientoDTO {
 		this.valoracionMedia = valoracionMedia;
 	}
 
+	public int getAforoActual() {
+		return aforoActual;
+	}
+
+	public void setAforoActual(int aforoActual) {
+		this.aforoActual = aforoActual;
+	}
+
+	public boolean isVerificadoAdmin() {
+		return verificadoAdmin;
+	}
+
+	public void setVerificadoAdmin(boolean verificadoAdmin) {
+		this.verificadoAdmin = verificadoAdmin;
+	}
+
+	
 }
