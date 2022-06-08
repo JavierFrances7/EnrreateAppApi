@@ -59,7 +59,7 @@ public class Establecimiento implements Serializable {
     private String correo;
     @Basic(optional = false)
     @Column(name = "verificado_admin")
-    private short verificadoAdmin;
+    private boolean verificadoAdmin;
     @Column(name = "display_name")
     private String displayName;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -93,7 +93,7 @@ public class Establecimiento implements Serializable {
         this.uidEstablecimiento = uidEstablecimiento;
     }
 
-    public Establecimiento(String uidEstablecimiento, String nombreEstablecimiento, String nombreGestor, String correo, short verificadoAdmin) {
+    public Establecimiento(String uidEstablecimiento, String nombreEstablecimiento, String nombreGestor, String correo, boolean verificadoAdmin) {
         this.uidEstablecimiento = uidEstablecimiento;
         this.nombreEstablecimiento = nombreEstablecimiento;
         this.nombreGestor = nombreGestor;
@@ -133,11 +133,11 @@ public class Establecimiento implements Serializable {
         this.correo = correo;
     }
 
-    public short getVerificadoAdmin() {
+    public boolean getVerificadoAdmin() {
         return verificadoAdmin;
     }
 
-    public void setVerificadoAdmin(short verificadoAdmin) {
+    public void setVerificadoAdmin(boolean verificadoAdmin) {
         this.verificadoAdmin = verificadoAdmin;
     }
 

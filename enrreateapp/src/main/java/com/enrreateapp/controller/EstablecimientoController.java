@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import com.enrreateapp.exceptions.EstablecimientoNotFoundException;
 import com.enrreateapp.model.Establecimiento;
 import com.enrreateapp.repository.EstablecimientoRepository;
 
+@CrossOrigin
 @RestController
 public class EstablecimientoController {
 	// Se declara como final pq no se va a modificar este repositorio se inyecta
