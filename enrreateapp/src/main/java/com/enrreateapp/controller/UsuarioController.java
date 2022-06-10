@@ -63,7 +63,7 @@ public class UsuarioController {
 		if (result == null)
 			throw new UsuarioNotFoundException("ERROR: Usuario no encontrado con el id: " + uid_usuario);
 		else
-			return ResponseEntity.ok(usuarioDTOConverter.convertirADto(result));
+			return ResponseEntity.ok(usuarioDTOConverter.convertirCompletoADto(result));
 	}
 
 	// Método que obtiene todos los uids de los usuarios normales

@@ -74,7 +74,7 @@ public class EstablecimientoController {
 			throw new EstablecimientoNotFoundException(
 					"ERROR: establecimientos no encontrado con el id: " + uid_establecimiento);
 		else
-			return ResponseEntity.ok(establecimientoDTOConverter.convertirADto(result));
+			return ResponseEntity.ok(establecimientoDTOConverter.convertirCompletoADto(result));
 	}
 
 	/**
