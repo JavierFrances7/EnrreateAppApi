@@ -40,7 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Evento.findByFechaInicio", query = "SELECT e FROM Evento e WHERE e.fechaInicio = :fechaInicio"),
     @NamedQuery(name = "Evento.findByFechaFin", query = "SELECT e FROM Evento e WHERE e.fechaFin = :fechaFin"),
     @NamedQuery(name = "Evento.findByEdadMinima", query = "SELECT e FROM Evento e WHERE e.edadMinima = :edadMinima"),
-    @NamedQuery(name = "Evento.findByTipoMusica", query = "SELECT e FROM Evento e WHERE e.tipoMusica = :tipoMusica")})
+    @NamedQuery(name = "Evento.findByTipoMusica", query = "SELECT e FROM Evento e WHERE e.tipoMusica = :tipoMusica"),
+    @NamedQuery(name = "Evento.findByNombre", query = "SELECT e FROM Evento e WHERE e.nombre = :nombre")})
 public class Evento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,6 +63,9 @@ public class Evento implements Serializable {
     private Integer edadMinima;
     @Column(name = "tipo_musica")
     private String tipoMusica;
+    @Basic(optional = false)
+    @Column(name = "nombre")
+    private String nombre;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
     private List<UsuarioValoraEvento> usuarioValoraEventoList;
     @JoinColumn(name = "uid_establecimiento", referencedColumnName = "uid_establecimiento")
@@ -77,9 +81,10 @@ public class Evento implements Serializable {
         this.idEvento = idEvento;
     }
 
-    public Evento(Integer idEvento, Date fechaInicio) {
+    public Evento(Integer idEvento, Date fechaInicio, String nombre) {
         this.idEvento = idEvento;
         this.fechaInicio = fechaInicio;
+        this.nombre = nombre;
     }
 
     public Integer getIdEvento() {
@@ -128,6 +133,14 @@ public class Evento implements Serializable {
 
     public void setTipoMusica(String tipoMusica) {
         this.tipoMusica = tipoMusica;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @XmlTransient

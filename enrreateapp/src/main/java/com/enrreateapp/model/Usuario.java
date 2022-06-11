@@ -37,7 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
     @NamedQuery(name = "Usuario.findByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo"),
     @NamedQuery(name = "Usuario.findByFechaNacimiento", query = "SELECT u FROM Usuario u WHERE u.fechaNacimiento = :fechaNacimiento"),
-    @NamedQuery(name = "Usuario.findByDisplayName", query = "SELECT u FROM Usuario u WHERE u.displayName = :displayName")})
+    @NamedQuery(name = "Usuario.findByDisplayName", query = "SELECT u FROM Usuario u WHERE u.displayName = :displayName"),
+    @NamedQuery(name = "Usuario.findByImagenPerfil", query = "SELECT u FROM Usuario u WHERE u.imagenPerfil = :imagenPerfil")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -63,6 +64,8 @@ public class Usuario implements Serializable {
     private Date fechaNacimiento;
     @Column(name = "display_name")
     private String displayName;
+    @Column(name = "imagen_perfil")
+    private String imagenPerfil;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<UsuarioValoraEvento> usuarioValoraEventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "uidUsuario")
@@ -144,6 +147,14 @@ public class Usuario implements Serializable {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public String getImagenPerfil() {
+        return imagenPerfil;
+    }
+
+    public void setImagenPerfil(String imagenPerfil) {
+        this.imagenPerfil = imagenPerfil;
     }
 
     @XmlTransient

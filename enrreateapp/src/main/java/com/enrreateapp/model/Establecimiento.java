@@ -40,7 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Establecimiento.findByDireccion", query = "SELECT e FROM Establecimiento e WHERE e.direccion = :direccion"),
     @NamedQuery(name = "Establecimiento.findByAforoMaximo", query = "SELECT e FROM Establecimiento e WHERE e.aforoMaximo = :aforoMaximo"),
     @NamedQuery(name = "Establecimiento.findByValoracionMedia", query = "SELECT e FROM Establecimiento e WHERE e.valoracionMedia = :valoracionMedia"),
-    @NamedQuery(name = "Establecimiento.findByAforoActual", query = "SELECT e FROM Establecimiento e WHERE e.aforoActual = :aforoActual")})
+    @NamedQuery(name = "Establecimiento.findByAforoActual", query = "SELECT e FROM Establecimiento e WHERE e.aforoActual = :aforoActual"),
+    @NamedQuery(name = "Establecimiento.findByImagenPerfil", query = "SELECT e FROM Establecimiento e WHERE e.imagenPerfil = :imagenPerfil")})
 public class Establecimiento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,6 +78,8 @@ public class Establecimiento implements Serializable {
     private Float valoracionMedia;
     @Column(name = "aforo_actual")
     private Integer aforoActual;
+    @Column(name = "imagen_perfil")
+    private String imagenPerfil;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "uidEstablecimiento")
     private List<Evento> eventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "establecimiento")
@@ -203,6 +206,14 @@ public class Establecimiento implements Serializable {
 
     public void setAforoActual(Integer aforoActual) {
         this.aforoActual = aforoActual;
+    }
+
+    public String getImagenPerfil() {
+        return imagenPerfil;
+    }
+
+    public void setImagenPerfil(String imagenPerfil) {
+        this.imagenPerfil = imagenPerfil;
     }
 
     @XmlTransient
