@@ -14,14 +14,15 @@ public class EstablecimientoDTO {
 	private float valoracionMedia;
 	private int aforoActual;
 	private boolean verificadoAdmin;
-
+	private String imagenPerfil;
 
 	public EstablecimientoDTO() {
 	}
 
+
 	public EstablecimientoDTO(String uidEstablecimiento, String nombreEstablecimiento, String nombreGestor,
 			String correo, float latitud, float longitud, String ciudad, String direccion, int aforoMaximo,
-			float valoracionMedia, int aforoActual, boolean verificadoAdmin) {
+			float valoracionMedia, int aforoActual, boolean verificadoAdmin, String imagenPerfil) {
 		super();
 		this.uidEstablecimiento = uidEstablecimiento;
 		this.nombreEstablecimiento = nombreEstablecimiento;
@@ -35,7 +36,9 @@ public class EstablecimientoDTO {
 		this.valoracionMedia = valoracionMedia;
 		this.aforoActual = aforoActual;
 		this.verificadoAdmin = verificadoAdmin;
+		this.imagenPerfil = imagenPerfil;
 	}
+
 
 	public String getUidEstablecimiento() {
 		return uidEstablecimiento;
@@ -133,5 +136,16 @@ public class EstablecimientoDTO {
 		this.verificadoAdmin = verificadoAdmin;
 	}
 
-	
+
+	public String getImagenPerfil() {
+		return imagenPerfil;
+	}
+
+
+	public void setImagenPerfil(String imagenPerfil) {
+		this.imagenPerfil = imagenPerfil;
+	}
+
+
+
 }
