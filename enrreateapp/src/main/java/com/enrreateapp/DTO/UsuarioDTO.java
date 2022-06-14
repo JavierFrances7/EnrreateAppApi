@@ -12,18 +12,20 @@ public class UsuarioDTO {
 	private String nombreUsuario;
 	private String correo;
 	private Date fechaNacimiento;
+	private String imagenPerfil;
 
 	public UsuarioDTO() {
 	}
 
 	public UsuarioDTO(String uidUsuario, String nombre, String apellidos, String nombreUsuario, String correo,
-			Date fechaNacimiento) {
+			Date fechaNacimiento, String imagenPerfil) {
 		this.uidUsuario = uidUsuario;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.nombreUsuario = nombreUsuario;
 		this.correo = correo;
 		this.fechaNacimiento = fechaNacimiento;
+		this.imagenPerfil = imagenPerfil;
 	}
 
 	public String getUidUsuario() {
@@ -72,6 +74,14 @@ public class UsuarioDTO {
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getImagenPerfil() {
+		return imagenPerfil;
+	}
+
+	public void setImagenPerfil(String imagenPerfil) {
+		this.imagenPerfil = imagenPerfil;
 	}
 
 }

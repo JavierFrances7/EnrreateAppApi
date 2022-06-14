@@ -17,20 +17,24 @@ public class UsuarioCompletoDTO {
 	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date fechaNacimiento;
 	private String displayName;
+	private String imagenPerfil;
+
 
 	public UsuarioCompletoDTO() {
 	}
 
 	public UsuarioCompletoDTO(String uidUsuario, String nombre, String apellidos, String nombreUsuario, String correo,
-			Date fechaNacimiento, String displayName) {
+			Date fechaNacimiento, String imagenPerfil) {
+		super();
 		this.uidUsuario = uidUsuario;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.nombreUsuario = nombreUsuario;
 		this.correo = correo;
 		this.fechaNacimiento = fechaNacimiento;
-		this.displayName = displayName;
+		this.imagenPerfil = imagenPerfil;
 	}
+
 
 	public String getUidUsuario() {
 		return uidUsuario;
@@ -87,5 +91,14 @@ public class UsuarioCompletoDTO {
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
 	}
+
+	public String getImagenPerfil() {
+		return imagenPerfil;
+	}
+
+	public void setImagenPerfil(String imagenPerfil) {
+		this.imagenPerfil = imagenPerfil;
+	}
+	
 
 }

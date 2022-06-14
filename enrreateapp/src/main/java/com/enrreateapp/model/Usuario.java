@@ -22,6 +22,8 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  *
  * @author Javier
@@ -61,6 +63,7 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "fecha_nacimiento")
     @Temporal(TemporalType.DATE)
+	@JsonFormat(pattern="dd-MM-yyyy")
     private Date fechaNacimiento;
     @Column(name = "display_name")
     private String displayName;
