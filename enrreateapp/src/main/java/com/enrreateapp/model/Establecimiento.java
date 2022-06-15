@@ -82,12 +82,10 @@ public class Establecimiento implements Serializable {
     private String imagenPerfil;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "uidEstablecimiento")
     private List<Evento> eventoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "establecimiento")
-    private List<UsuarioValoraEstablecimiento> usuarioValoraEstablecimientoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "uidEstablecimiento")
     private List<ComentarioEstablecimiento> comentarioEstablecimientoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "establecimiento")
-    private List<UsuarioAsisteEstablecimiento> usuarioAsisteEstablecimientoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "uidEstablecimiento")
+    private List<PreguntaEstablecimiento> preguntaEstablecimientoList;
 
     public Establecimiento() {
     }
@@ -226,15 +224,6 @@ public class Establecimiento implements Serializable {
     }
 
     @XmlTransient
-    public List<UsuarioValoraEstablecimiento> getUsuarioValoraEstablecimientoList() {
-        return usuarioValoraEstablecimientoList;
-    }
-
-    public void setUsuarioValoraEstablecimientoList(List<UsuarioValoraEstablecimiento> usuarioValoraEstablecimientoList) {
-        this.usuarioValoraEstablecimientoList = usuarioValoraEstablecimientoList;
-    }
-
-    @XmlTransient
     public List<ComentarioEstablecimiento> getComentarioEstablecimientoList() {
         return comentarioEstablecimientoList;
     }
@@ -244,12 +233,12 @@ public class Establecimiento implements Serializable {
     }
 
     @XmlTransient
-    public List<UsuarioAsisteEstablecimiento> getUsuarioAsisteEstablecimientoList() {
-        return usuarioAsisteEstablecimientoList;
+    public List<PreguntaEstablecimiento> getPreguntaEstablecimientoList() {
+        return preguntaEstablecimientoList;
     }
 
-    public void setUsuarioAsisteEstablecimientoList(List<UsuarioAsisteEstablecimiento> usuarioAsisteEstablecimientoList) {
-        this.usuarioAsisteEstablecimientoList = usuarioAsisteEstablecimientoList;
+    public void setPreguntaEstablecimientoList(List<PreguntaEstablecimiento> preguntaEstablecimientoList) {
+        this.preguntaEstablecimientoList = preguntaEstablecimientoList;
     }
 
     @Override

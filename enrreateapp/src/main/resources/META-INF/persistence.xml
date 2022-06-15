@@ -21,6 +21,7 @@
     <class>com.enrreateapp.model.Usuario</class>
     <class>com.enrreateapp.model.UsuarioValoraEstablecimiento</class>
     <class>com.enrreateapp.model.UsuarioAsisteEstablecimiento</class>
+    <class>com.enrreateapp.model.PreguntaEstablecimiento</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/enrreateapp?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

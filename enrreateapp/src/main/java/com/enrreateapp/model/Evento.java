@@ -7,9 +7,7 @@ package com.enrreateapp.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,12 +17,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -66,13 +62,9 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
-    private List<UsuarioValoraEvento> usuarioValoraEventoList;
     @JoinColumn(name = "uid_establecimiento", referencedColumnName = "uid_establecimiento")
     @ManyToOne(optional = false)
     private Establecimiento uidEstablecimiento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEvento")
-    private List<ComentarioEvento> comentarioEventoList;
 
     public Evento() {
     }
@@ -143,30 +135,12 @@ public class Evento implements Serializable {
         this.nombre = nombre;
     }
 
-    @XmlTransient
-    public List<UsuarioValoraEvento> getUsuarioValoraEventoList() {
-        return usuarioValoraEventoList;
-    }
-
-    public void setUsuarioValoraEventoList(List<UsuarioValoraEvento> usuarioValoraEventoList) {
-        this.usuarioValoraEventoList = usuarioValoraEventoList;
-    }
-
     public Establecimiento getUidEstablecimiento() {
         return uidEstablecimiento;
     }
 
     public void setUidEstablecimiento(Establecimiento uidEstablecimiento) {
         this.uidEstablecimiento = uidEstablecimiento;
-    }
-
-    @XmlTransient
-    public List<ComentarioEvento> getComentarioEventoList() {
-        return comentarioEventoList;
-    }
-
-    public void setComentarioEventoList(List<ComentarioEvento> comentarioEventoList) {
-        this.comentarioEventoList = comentarioEventoList;
     }
 
     @Override

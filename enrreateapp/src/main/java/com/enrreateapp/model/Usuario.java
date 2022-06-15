@@ -22,8 +22,6 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 /**
  *
  * @author Javier
@@ -63,22 +61,15 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "fecha_nacimiento")
     @Temporal(TemporalType.DATE)
-	@JsonFormat(pattern="dd-MM-yyyy")
     private Date fechaNacimiento;
     @Column(name = "display_name")
     private String displayName;
     @Column(name = "imagen_perfil")
     private String imagenPerfil;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<UsuarioValoraEvento> usuarioValoraEventoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "uidUsuario")
-    private List<ComentarioEvento> comentarioEventoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<UsuarioValoraEstablecimiento> usuarioValoraEstablecimientoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "uidUsuario")
     private List<ComentarioEstablecimiento> comentarioEstablecimientoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<UsuarioAsisteEstablecimiento> usuarioAsisteEstablecimientoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "uidUsuario")
+    private List<PreguntaEstablecimiento> preguntaEstablecimientoList;
 
     public Usuario() {
     }
@@ -161,33 +152,6 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<UsuarioValoraEvento> getUsuarioValoraEventoList() {
-        return usuarioValoraEventoList;
-    }
-
-    public void setUsuarioValoraEventoList(List<UsuarioValoraEvento> usuarioValoraEventoList) {
-        this.usuarioValoraEventoList = usuarioValoraEventoList;
-    }
-
-    @XmlTransient
-    public List<ComentarioEvento> getComentarioEventoList() {
-        return comentarioEventoList;
-    }
-
-    public void setComentarioEventoList(List<ComentarioEvento> comentarioEventoList) {
-        this.comentarioEventoList = comentarioEventoList;
-    }
-
-    @XmlTransient
-    public List<UsuarioValoraEstablecimiento> getUsuarioValoraEstablecimientoList() {
-        return usuarioValoraEstablecimientoList;
-    }
-
-    public void setUsuarioValoraEstablecimientoList(List<UsuarioValoraEstablecimiento> usuarioValoraEstablecimientoList) {
-        this.usuarioValoraEstablecimientoList = usuarioValoraEstablecimientoList;
-    }
-
-    @XmlTransient
     public List<ComentarioEstablecimiento> getComentarioEstablecimientoList() {
         return comentarioEstablecimientoList;
     }
@@ -197,12 +161,12 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<UsuarioAsisteEstablecimiento> getUsuarioAsisteEstablecimientoList() {
-        return usuarioAsisteEstablecimientoList;
+    public List<PreguntaEstablecimiento> getPreguntaEstablecimientoList() {
+        return preguntaEstablecimientoList;
     }
 
-    public void setUsuarioAsisteEstablecimientoList(List<UsuarioAsisteEstablecimiento> usuarioAsisteEstablecimientoList) {
-        this.usuarioAsisteEstablecimientoList = usuarioAsisteEstablecimientoList;
+    public void setPreguntaEstablecimientoList(List<PreguntaEstablecimiento> preguntaEstablecimientoList) {
+        this.preguntaEstablecimientoList = preguntaEstablecimientoList;
     }
 
     @Override
