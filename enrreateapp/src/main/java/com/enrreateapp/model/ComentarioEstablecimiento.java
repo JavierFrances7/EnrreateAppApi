@@ -33,14 +33,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ComentarioEstablecimiento.findAll", query = "SELECT c FROM ComentarioEstablecimiento c"),
     @NamedQuery(name = "ComentarioEstablecimiento.findByIdComentario", query = "SELECT c FROM ComentarioEstablecimiento c WHERE c.idComentario = :idComentario"),
     @NamedQuery(name = "ComentarioEstablecimiento.findByFecha", query = "SELECT c FROM ComentarioEstablecimiento c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "ComentarioEstablecimiento.findByComentario", query = "SELECT c FROM ComentarioEstablecimiento c WHERE c.comentario = :comentario")})
+    @NamedQuery(name = "ComentarioEstablecimiento.findByComentario", query = "SELECT c FROM ComentarioEstablecimiento c WHERE c.comentario = :comentario"),
+    @NamedQuery(name = "ComentarioEstablecimiento.findByNota", query = "SELECT c FROM ComentarioEstablecimiento c WHERE c.nota = :nota")})
 public class ComentarioEstablecimiento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_comentario")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idComentario;
     @Basic(optional = false)
     @Column(name = "fecha")
@@ -49,6 +50,8 @@ public class ComentarioEstablecimiento implements Serializable {
     @Basic(optional = false)
     @Column(name = "comentario")
     private String comentario;
+    @Column(name = "nota")
+    private Integer nota;
     @JoinColumn(name = "uid_establecimiento", referencedColumnName = "uid_establecimiento")
     @ManyToOne(optional = false)
     private Establecimiento uidEstablecimiento;
@@ -91,6 +94,14 @@ public class ComentarioEstablecimiento implements Serializable {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public Integer getNota() {
+        return nota;
+    }
+
+    public void setNota(Integer nota) {
+        this.nota = nota;
     }
 
     public Establecimiento getUidEstablecimiento() {

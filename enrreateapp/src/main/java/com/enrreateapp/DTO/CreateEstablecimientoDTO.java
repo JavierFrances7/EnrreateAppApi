@@ -7,14 +7,17 @@ public class CreateEstablecimientoDTO {
 	private String nombreGestor;
 	private String correo;
 	private boolean verificadoAdmin;
+	private String imagenPerfil;
 
 	public CreateEstablecimientoDTO(String uidEstablecimiento, String nombreEstablecimiento, String nombreGestor,
-			String correo, boolean verificadoAdmin) {
+			String correo, boolean verificadoAdmin, String imagenPerfil) {
+		super();
 		this.uidEstablecimiento = uidEstablecimiento;
 		this.nombreEstablecimiento = nombreEstablecimiento;
 		this.nombreGestor = nombreGestor;
 		this.correo = correo;
 		this.verificadoAdmin = verificadoAdmin;
+		this.imagenPerfil = imagenPerfil;
 	}
 
 	public CreateEstablecimientoDTO() {
@@ -60,4 +63,12 @@ public class CreateEstablecimientoDTO {
 		this.verificadoAdmin = verificadoAdmin;
 	}
 
+	public String getImagenPerfil() {
+		return imagenPerfil;
+	}
+
+	public void setImagenPerfil(String imagenPerfil) {
+		this.imagenPerfil = imagenPerfil;
+	}
+	
 }

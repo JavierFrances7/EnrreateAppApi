@@ -10,12 +10,15 @@ public class CreateUsuarioDTO {
 	private String nombreUsuario;
 	private String correo;
 	private Date fechaNacimiento;
+	private String imagenPerfil;
+
 
 	public CreateUsuarioDTO() {
 	}
 
+
 	public CreateUsuarioDTO(String uidUsuario, String nombre, String apellidos, String nombreUsuario, String correo,
-			Date fechaNacimiento) {
+			Date fechaNacimiento, String imagenPerfil) {
 		super();
 		this.uidUsuario = uidUsuario;
 		this.nombre = nombre;
@@ -23,6 +26,7 @@ public class CreateUsuarioDTO {
 		this.nombreUsuario = nombreUsuario;
 		this.correo = correo;
 		this.fechaNacimiento = fechaNacimiento;
+		this.imagenPerfil = imagenPerfil;
 	}
 
 	public String getUidUsuario() {
@@ -72,5 +76,14 @@ public class CreateUsuarioDTO {
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+
+	public String getImagenPerfil() {
+		return imagenPerfil;
+	}
+
+	public void setImagenPerfil(String imagenPerfil) {
+		this.imagenPerfil = imagenPerfil;
+	}
+	
 
 }

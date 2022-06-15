@@ -1,19 +1,19 @@
 package com.enrreateapp.DTO;
 
-
 public class UsuarioUidsDTO {
-	
+
 	private String uidUsuario;
 	private String nombre;
+	private String nombreUsuario;
 	private String imagenPerfil;
 
-	
 	public UsuarioUidsDTO() {
 	}
 
-	public UsuarioUidsDTO(String uidUsuario, String nombre, String imagenPerfil) {
+	public UsuarioUidsDTO(String uidUsuario, String nombre, String nombreUsuario, String imagenPerfil) {
 		this.uidUsuario = uidUsuario;
 		this.nombre = nombre;
+		this.nombreUsuario = nombreUsuario;
 		this.imagenPerfil = imagenPerfil;
 	}
 
@@ -39,6 +39,14 @@ public class UsuarioUidsDTO {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}	
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
 
 }

@@ -10,20 +10,26 @@ public class ComentarioEstablecimientoDTO {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date fecha;
 	private String comentario;
+	private int nota;
 	private EstablecimientoUidsDTO uidEstablecimiento;
 	private UsuarioUidsDTO uidUsuario;
+
+
 
 	public ComentarioEstablecimientoDTO() {
 	}
 
-	public ComentarioEstablecimientoDTO(String idComentario, Date fecha, String comentario,
+	public ComentarioEstablecimientoDTO(String idComentario, Date fecha, String comentario, int nota,
 			EstablecimientoUidsDTO uidEstablecimiento, UsuarioUidsDTO uidUsuario) {
 		this.idComentario = idComentario;
 		this.fecha = fecha;
 		this.comentario = comentario;
+		this.nota = nota;
 		this.uidEstablecimiento = uidEstablecimiento;
 		this.uidUsuario = uidUsuario;
 	}
+
+
 
 	public String getIdComentario() {
 		return idComentario;
@@ -63,6 +69,14 @@ public class ComentarioEstablecimientoDTO {
 
 	public void setUidUsuario(UsuarioUidsDTO uidUsuario) {
 		this.uidUsuario = uidUsuario;
+	}
+
+	public int getNota() {
+		return nota;
+	}
+
+	public void setNota(int nota) {
+		this.nota = nota;
 	}
 
 }

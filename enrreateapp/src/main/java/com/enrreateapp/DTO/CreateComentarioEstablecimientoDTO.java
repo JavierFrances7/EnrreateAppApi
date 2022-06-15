@@ -10,21 +10,27 @@ public class CreateComentarioEstablecimientoDTO {
 	private String idComentario;
 	private Date fecha;
 	private String comentario;
+	private int nota;
 	private EstablecimientoUidsDTO establecimiento;
 	private UsuarioUidsDTO usuario;
 
 	public CreateComentarioEstablecimientoDTO() {
 	}
 
-	public CreateComentarioEstablecimientoDTO(String idComentario, Date fecha, String comentario,
+
+
+	public CreateComentarioEstablecimientoDTO(String idComentario, Date fecha, String comentario, int nota,
 			EstablecimientoUidsDTO establecimiento, UsuarioUidsDTO usuario) {
 		super();
 		this.idComentario = idComentario;
 		this.fecha = fecha;
 		this.comentario = comentario;
+		this.nota = nota;
 		this.establecimiento = establecimiento;
 		this.usuario = usuario;
 	}
+
+
 
 	public String getIdComentario() {
 		return idComentario;
@@ -66,4 +72,13 @@ public class CreateComentarioEstablecimientoDTO {
 		this.usuario = usuario;
 	}
 
+	public int getNota() {
+		return nota;
+	}
+
+	public void setNota(int nota) {
+		this.nota = nota;
+	}
+
+	
 }
